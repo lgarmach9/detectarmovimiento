@@ -5,7 +5,7 @@
     </head>
     <body>
         <canvas id="lienzo"></canvas>
-        <video id="video" autoplay> </video>
+        <video id="video" autoplay></video>
         <script>
             const video = document.getElementById("video");
             const lienzo = document.getElementById("lienzo");
@@ -13,14 +13,14 @@
             
             navigator.mediaDevices.getUserMedia({video:true})
                 .then(function(flujo){
-                    video.scrObject =flujo;
-                });
+                    video.srcObject = flujo;
+                })
                 .catch(function(error){
-                    console.log("error: "+error) 
-                });
+                    console.log("error: "+error)
+                })
+                
+          
             
         </script>
     </body>
-
-
 </html>

@@ -4,8 +4,8 @@
         <title>Detección de movimiento</title>
     </head>
     <body>
-        <canvas id="lienzo" width="640px" heigth="480px"> </canvas>
-        <video id="video" autoplay controls> </video>
+        <canvas id="lienzo" width="640px" height="480px"></canvas>
+        <video id="video" autoplay></video>
         <script>
             const video = document.getElementById("video");
             const lienzo = document.getElementById("lienzo");
@@ -13,24 +13,23 @@
             
             navigator.mediaDevices.getUserMedia({video:true})
                 .then(function(flujo){
-                    video.scrObject =flujo;
-                });
+                    video.srcObject = flujo;
+                })
                 .catch(function(error){
-                    console.log("error: "+error) 
-                });
-            
+                    console.log("error: "+error)
+                })
+                
             function videoALienzo(){
                 contexto.drawImage(video,0,0,lienzo.width,lienzo.height);
                 let pixel = contexto.getImageData(320,240,1,1);
-                console.log(pixel.data)
+                console.log(pixel.data[0])
                 requestAnimationFrame(videoALienzo)
-            };
+            }
+
+            video.addEventListener('play',function(){
+                videoALienzo()
+            })
             
-            video.addEventListener('play', function(){
-                    videoALienzo()
-            });
         </script>
     </body>
-
-
 </html>
